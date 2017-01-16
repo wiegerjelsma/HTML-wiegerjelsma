@@ -1,0 +1,211 @@
+// Medot Sites Color theme
+// -----------------------
+.c-medot-sites
+	{
+		// Inputs
+		// ------
+		input, .c-input-loader
+			{
+				border: 						2px solid lighten($c-colors-medotsites-text, 50%);
+				background-color: 				white;
+		
+				&:focus
+					{
+						border-color: $c-colors-medotsites;
+						color: $c-colors-medotsites-text;
+					}			
+			}
+		input[type="submit"]
+			{
+				background-color: 				$c-colors-medotsites;
+				border-color: 					$c-colors-medotsites;
+				color: 							$c-colors-medotsites-text; 
+				
+				&:hover
+					{
+						background-color: 				white;
+						border-color: 					white;
+						color: 							$c-colors-medotsites-text;				
+					}
+			}
+		
+		
+		.c-topbar-sticky
+			{
+				p
+					{
+						color: 				$c-colors-medotsites-text;
+					}
+				.c-topbar-left
+					{
+						background: 				$c-colors-medotsites;
+					}	
+			}
+			
+		// Hamburger
+		// ---------
+		.c-hamburger
+			{
+				.c-hamburger-icon span
+					{
+						background: 					$c-colors-medotsites-black;
+					}				
+				.c-hamburger-icon.open span
+					{
+						background: 					$c-colors-medotsites;				
+					}
+			}
+			
+			
+		// Off canvas
+		// ----------
+		.off-canvas
+			{
+				background-color: 				$c-offcanvas-background-color;
+				
+				.c-menu
+					{										
+						a
+							{
+								color: 							$c-colors-medotsites-text;				
+								
+								&:hover
+									{
+										color: 						$c-colors-medotsites;
+									}
+							}
+						a.c-active
+							{
+								color: 						$c-colors-medotsites;
+							}
+					}
+/*				.c-medot-sites
+					{
+						strong
+							{
+								color: #000;
+							}
+						a
+							{
+								color: 			#000;
+								&:hover
+									{
+										color: $c-colors-medotsites;
+									}
+							}
+					} */
+				.c-menu-social
+					{
+						a.fa
+							{
+								color: 							$c-colors-medotsites-text;				
+								
+								&:hover
+									{
+										color: 							$c-colors-medotsites-text;
+										background-color: 				$c-colors-medotsites;
+									}
+							}
+					}
+				p
+					{	
+						color: 							$c-colors-medotsites-text;				
+									
+						strong
+							{
+								color: 							$c-colors-medotsites;				
+							}
+					}
+			}	
+			
+			
+		// Content panels
+		// --------------
+		.c-content-cnt
+			{
+/*				background-color: $c-colors-lightGrey; */
+				
+				figcaption
+					{
+						color: 							$c-colors-darkGrey;
+						border-bottom: 					1px solid $c-colors-lightGrey-bg;
+					}
+				h1, blockquote:before, li:before, p a .fa, h4
+					{
+						color: 							$c-colors-medotsites;
+					}	
+				h2, a, p, blockquote, .c-about-me h3, li
+					{
+						color: 							$c-colors-medotsites-text;
+					}
+				h3, blockquote cite
+					{
+						color: 							$c-colors-darkGrey;
+					}
+				i.fa
+					{
+						margin-left: 					5px;
+						color: 							$c-colors-medotsites;
+					}
+			}
+
+			
+		// Footer
+		// ------
+		.c-footer
+			{
+				background: 					$c-colors-medotsites-black;
+				color: 							$c-colors-medotsites-text;	
+				
+				h3
+					{
+						color: 							$c-colors-medotsites;
+					}
+				a
+					{
+						color: 							$c-colors-medotsites;	
+					}
+				p
+					{
+						color: 							$c-colors-lightGrey;
+						
+						a
+							{
+								color: 							$c-colors-medotsites;
+							}				
+					}
+				hr
+					{
+						border-color: lighten($c-colors-medotsites-black, 15%);
+					}
+				.c-input-loader
+					{
+						background-color: 				$c-colors-medotsites;
+						border-color: 					$c-colors-medotsites;
+						color: 							white;
+					}
+				input[type="text"]
+					{
+						background: 					white;
+						border-color: white;
+						color: $c-colors-medotsites-black;
+					}
+
+				.c-menu-social
+					{
+						a.fa
+							{
+								color: 							$c-colors-medotsites-text;
+								background: 					white;
+								&:hover
+									{
+										color: 							$c-colors-medotsites-black;
+										background-color: 				$c-colors-medotsites;
+									}
+							}
+					}
+			}	
+			
+			
+			
+	}

@@ -1,0 +1,2044 @@
+/*
+	
+	Replacements foundations _off-canvas.scss
+	
+	I replaced all the transition with my own mixins.
+	Such as:
+	   
+			@include c-translateX ($size);  
+//        	transform: translateX($size);	
+*/
+
+
+@charset 'utf-8';
+
+// My own mixins
+// -------------
+@import 'mixins';
+
+@import 'foundation';
+//@import 'motion-ui';
+@import 'settings';
+
+
+@include foundation-global-styles;
+@include foundation-grid;
+//@include foundation-typography;
+//@include foundation-button;
+//@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+//@include foundation-accordion;
+//@include foundation-badge;
+//@include foundation-breadcrumbs;
+//@include foundation-button-group;
+//@include foundation-callout;
+//@include foundation-close-button;
+//@include foundation-drilldown-menu;
+//@include foundation-dropdown;
+//@include foundation-dropdown-menu;
+//@include foundation-flex-video;
+//@include foundation-label;
+//@include foundation-media-object;
+//@include foundation-menu;
+@include foundation-off-canvas;
+//@include foundation-orbit;
+//@include foundation-pagination;
+//@include foundation-progress-bar;
+//@include foundation-slider;
+//@include foundation-sticky;
+//@include foundation-reveal;
+//@include foundation-switch;
+//@include foundation-table;
+//@include foundation-tabs;
+//@include foundation-thumbnail;
+//@include foundation-title-bar;
+//@include foundation-tooltip;
+//@include foundation-top-bar;
+
+//@include motion-ui-transitions;
+//@include motion-ui-animations;
+
+@import "../bower_components/font-awesome/scss/font-awesome.scss";
+@import "../bower_components/fullpage.js/jquery.fullPage.scss";
+
+@import 'vars';
+@import 'storytale';
+@import 'medotsites';
+
+
+// Defaults
+// --------
+html 
+	{ 
+		font-size: 62.5%; -webkit-font-smoothing: antialiased; 
+		@include viewport-unit(height, 100vh);
+	}
+
+body 
+	{ 
+		min-height: 100vh; font-family: $c-font-family; letter-spacing: $c-font-letterspacing;
+		@include viewport-unit(min-height, 50vh);
+	}
+
+body,h1,h2,h3,h4,h5,h6,p { margin: 0; padding: 0; }
+
+input, .c-input-loader
+	{
+		$height: 						pxToRem(36px);
+
+		-webkit-appearance: 			none;
+		border: 						2px solid $c-colors-grey;
+		background-color: 				white;
+
+		@include c-border-radius(all, $height/2);
+
+		height: 						$height;
+		line-height: 					$height;
+		text-align: 					center;	
+		padding: 						0;
+		
+		@include breakpoint(small only) 		
+			{ 
+				$height: 						pxToRem(28px);
+				@include c-border-radius(all, $height/2);
+						
+				height: 						$height;						
+			}
+		&:focus
+			{
+				border-color: $c-colors-blue;
+				color: $c-colors-blue;
+			}			
+		-webkit-box-shadow: 0px 0px 0px white !important;
+		-moz-box-shadow: 0px 0px 0px white !important;
+		box-shadow: 0px 0px 0px white !important;
+	}
+input[type="submit"]
+	{
+		background-color: 				$c-colors-blue;
+		border-color: 					$c-colors-blue;
+		font-weight: 					$c-font-weight-bold;
+		text-transform: 				uppercase;
+		color: 							white;
+		
+		&:hover
+			{
+				background-color: 				white;
+				border-color: 					white;
+				color: 							$c-colors-blue;				
+			}
+	}
+input.c-error
+	{
+		border-color: 					red;
+		color: 							red;
+	}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+}
+
+p, input, li, ul
+	{
+		font-size: 						$c-font-size-p;
+		font-weight: 					$c-font-weight-p;
+		line-height: 					$c-font-lineheight-p;
+		letter-spacing: 				$c-font-letterspacing-p;
+		
+		@include breakpoint(small) 		{ font-size: $c-font-size-p-small;		font-weight: $c-font-weight-p-small;	line-height: $c-font-lineheight-p-small; 	}		
+		@include breakpoint(medium) 	{ font-size: $c-font-size-p-medium; 	font-weight: $c-font-weight-p-medium;	line-height: $c-font-lineheight-p-medium; 	}		
+		@include breakpoint(large) 		{ font-size: $c-font-size-p-large;		font-weight: $c-font-weight-p-large;	line-height: $c-font-lineheight-p-large;  	}
+	}
+
+h1
+	{
+		font-size: 						$c-font-size-h1;
+		font-weight: 					$c-font-weight-h1;
+		line-height: 					$c-font-lineheight-h1;
+		letter-spacing: 				$c-font-letterspacing-h1;
+		
+		@include breakpoint(small) 		{ font-size: $c-font-size-h1-small; 	font-weight: $c-font-weight-h1-small; 	line-height: $c-font-lineheight-h1-small; 	}		
+		@include breakpoint(medium) 	{ font-size: $c-font-size-h1-medium; 	font-weight: $c-font-weight-h1-medium; 	line-height: $c-font-lineheight-h1-medium; 	}		
+		@include breakpoint(large) 		{ font-size: $c-font-size-h1-large; 	font-weight: $c-font-weight-h1-large; 	line-height: $c-font-lineheight-h1-large; 	}
+	}
+
+h2
+	{
+		font-size: 						$c-font-size-h2;
+		font-weight: 					$c-font-weight-h2;
+		line-height: 					$c-font-lineheight-h2;
+		letter-spacing: 				$c-font-letterspacing-h2;		
+		
+		@include breakpoint(small) 		{ font-size: $c-font-size-h2-small;		font-weight: $c-font-weight-h2-small; 	line-height: $c-font-lineheight-h2-small; 	}		
+		@include breakpoint(medium) 	{ font-size: $c-font-size-h2-medium;	font-weight: $c-font-weight-h2-medium; 	line-height: $c-font-lineheight-h2-medium; 	}		
+		@include breakpoint(large) 		{ font-size: $c-font-size-h2-large;		font-weight: $c-font-weight-h2-large; 	line-height: $c-font-lineheight-h2-large; 	}
+	}
+
+.c-clear
+	{
+		clear: both;
+	}
+
+.c-written
+	{
+		font-family: 					$c-font-family-written;
+	}
+	
+hr
+	{
+		line-height: 					1px;
+		height: 						1px;
+		border: 						none;
+		border-top: 					1px solid $c-colors-lightGrey;
+	}	
+
+
+
+// Sly slides
+// ----------
+.c-sly-frame
+	{
+		padding: 						0; 
+		width: 							100%;
+		z-index: 						1;		
+		overflow: 						hidden;		
+
+		@include breakpoint(small only)
+			{ 
+				padding-top: 					$c-topbar-height-small * 2; 
+			} 						
+		
+		.c-sly-slidee
+			{
+				margin: 						0; 
+				padding: 						0; 
+				width: 							100%; 
+				list-style: 					none;
+				
+				background-color: 				$c-colors-lightGrey-bg;
+				background-color: white;
+				
+				@include breakpoint(small only) 
+					{ 				
+						background-color: 				white;
+					}						
+								
+				.columns
+					{
+						height: 						100%;
+						background-size: 				cover;
+						background-position: 			center center;
+						background-repeat: 				no-repeat;
+					}
+				.c-slidee-half
+					{
+						height: 						50%;
+					}
+				.c-slidee-content
+					{
+						background-color: 				$c-colors-lightGrey-bg;
+						text-align: 					center;
+						
+						padding: 						0 10%;	
+						
+/*						padding: 						20%;
+						
+						@include breakpoint(small) 		{ padding: 20%; }
+						@include breakpoint(medium) 	{ padding: 20%; }
+						@include breakpoint(large) 		{ padding: 20%; } */
+
+						h3
+							{
+								font-size: 						$c-contentslide-font-size-h3;
+								font-weight: 					$c-contentslide-font-weight-h3;
+								line-height: 					$c-contentslide-font-lineheight-h3;
+								
+								@include breakpoint(small) 		{ font-size: $c-contentslide-font-size-h3-small; 	font-weight: $c-contentslide-font-weight-h3-small; 	line-height: $c-contentslide-font-lineheight-h3-small; 	}
+								@include breakpoint(medium) 	{ font-size: $c-contentslide-font-size-h3-medium; 	font-weight: $c-contentslide-font-weight-h3-medium; 	line-height: $c-contentslide-font-lineheight-h3-medium; 	}
+								@include breakpoint(large) 		{ font-size: $c-contentslide-font-size-h3-large; 	font-weight: $c-contentslide-font-weight-h3-large; 	line-height: $c-contentslide-font-lineheight-h3-large; 	}
+								letter-spacing: 				$c-contentslide-font-letterspacing-h3;
+								margin-bottom: 					$c-grid/4;
+								
+							}
+						p
+							{
+								font-size: 						$c-contentslide-font-size-p;
+								font-weight: 					$c-contentslide-font-weight-p;
+								line-height: 					$c-contentslide-font-lineheight-p;
+								
+								@include breakpoint(small) 		{ font-size: $c-contentslide-font-size-p-small; 	font-weight: $c-contentslide-font-weight-p-small; 	line-height: $c-contentslide-font-lineheight-p-small; 	}
+								@include breakpoint(medium) 	{ font-size: $c-contentslide-font-size-p-medium; 	font-weight: $c-contentslide-font-weight-p-medium; 	line-height: $c-contentslide-font-lineheight-p-medium; 	}
+								@include breakpoint(large) 		{ font-size: $c-contentslide-font-size-p-large; 	font-weight: $c-contentslide-font-weight-p-large; 	line-height: $c-contentslide-font-lineheight-p-large; 	}
+								letter-spacing: 				$c-contentslide-font-letterspacing-p;
+								
+								a
+									{		
+										color: 							inherit;
+										text-decoration: 				none;
+										font-weight: 					$c-font-weight-bold;
+										
+										&:hover
+											{
+												text-decoration: 				underline;
+											}
+																		
+										span
+											{
+												margin-right: 					$c-grid/4;
+												
+												
+												@include breakpoint(small) {
+													margin-left: 					0;													
+												}
+												@include breakpoint(medium) {
+													margin-left: 					0;																										
+												}
+												@include breakpoint(large) {
+													margin-left: 					$c-grid/2;																										
+												}											
+											}										
+									}
+							}
+						p.c-contact-footer
+							{
+								
+								@include breakpoint(small) {
+									margin-top: 					$c-grid/4;													
+								}
+								@include breakpoint(medium) {
+									margin-top: 					$c-grid/2;																										
+								}
+								@include breakpoint(large) {
+									margin-top: 					$c-grid/2;																										
+								}								
+							}
+						hr
+							{
+								display: 						block;
+								
+								@include breakpoint(small) {
+									margin: 						$c-grid/4;													
+								}
+								@include breakpoint(medium) {
+									margin: 						$c-grid/2;																										
+								}
+								@include breakpoint(large) {
+									margin: 						$c-grid;																										
+								}								
+							}
+					}
+
+				// color schemes
+				.c-color-purple
+					{
+						background-color: 				purple;
+						
+						h3,p
+							{
+								color: 							white;
+							}
+						hr
+							{
+								border-color: 					lighten(purple, 5%);
+							}
+					}
+
+				.c-color-green
+					{
+						background-color: 				green;
+						
+						h3,p
+							{
+								color: 							white;
+							}
+						hr
+							{
+								border-color: 					lighten(green, 5%);
+							}
+					}
+				.c-color-yellow
+					{
+						background-color: 				yellow;
+						
+						h3,p
+							{
+								color: 							black;
+							}
+						hr
+							{
+								border-color: 					darken(yellow, 5%);
+							}
+					}
+					
+				.c-color-blue
+					{
+						background-color: 				$c-colors-lightGrey-bg;
+						
+						h3
+							{
+								color: 							$c-colors-blue;
+							}
+						p
+							{
+								color: 							$c-colors-text;
+								a
+									{
+										color: 							$c-colors-blue;										
+									}
+							}
+						hr
+							{
+								border-color: 					white;
+							}
+					}
+					
+					
+			}
+		.c-sly-slidee li
+			{
+				position: 						relative;
+				
+				float: 							left; 
+				margin: 						0; 
+				padding: 						0; 
+				width: 							100%; 						
+			}
+		.c-sly-slidee li.c-homepage
+			{
+				padding-top: 					0;
+				background-color: 				white;
+				
+				@include breakpoint(small only)
+					{ 
+						margin-top: -$c-topbar-height-small * 2;
+					}										
+			}
+		.c-slidee.show-for-small-only
+			{
+				height: 						inherit;
+			}
+		.c-slidee-half.show-for-small-only
+			{
+				height: 						50%;
+			}
+	}
+	
+	
+// Overlay
+// -------						
+.c-overlay-cnt
+	{
+		position: 						relative;
+		width: 							100%;
+		height: 						100%;
+		display: 						block;
+			
+/*		@include breakpoint(medium) {		
+			background-color: white;
+		}*/
+				
+/*		@include breakpoint(small) {
+			@include alpha-background-color(rgba(white, 0.15), white);
+		} */
+		@include breakpoint(medium) {
+			@include alpha-background-color(rgba(white, 0.95), white);
+		}
+		
+		.c-overlay
+			{
+				position: 						absolute;
+				padding: 						0 $c-grid/2;
+				
+				@include breakpoint(medium) {
+					top: 							50%;
+					width: 							100%;
+					text-align: 					center;				
+	
+					@include c-translateY (-50%);
+					@include c-transition (background-color, .9s);
+				}
+				
+				@include breakpoint(small only) 
+					{
+						@include c-gradient-white-to-transparent();
+						
+						bottom:							0;
+						margin-top: 					0;
+						width: 							100%;
+						padding: 						$c-grid $c-grid/2 $c-grid/2;
+					}									
+				
+				h1
+					{
+						font-size: 						$c-overlay-font-size-h1;
+						font-weight: 					$c-overlay-font-weight-h1;
+						line-height: 					$c-overlay-font-lineheight-h1;
+
+						@include c-transition(color, .1s);
+						
+						@include breakpoint(small) 		{ font-size: $c-overlay-font-size-h1-small; 	font-weight: $c-overlay-font-weight-h1-small; 	line-height: $c-overlay-font-lineheight-h1-small; 	}
+						@include breakpoint(medium) 	{ font-size: $c-overlay-font-size-h1-medium; 	font-weight: $c-overlay-font-weight-h1-medium; 	line-height: $c-overlay-font-lineheight-h1-medium; 	}
+						@include breakpoint(large) 		{ font-size: $c-overlay-font-size-h1-large; 	font-weight: $c-overlay-font-weight-h1-large; 	line-height: $c-overlay-font-lineheight-h1-large; 	}
+						
+						@include breakpoint(small) 		{ color: $c-colors-blue; }
+						@include breakpoint(large) 		{ color: $c-colors-grey; }
+					}
+				h2
+					{
+						font-size: 						$c-overlay-font-size-h2;
+						font-weight: 					$c-overlay-font-weight-h2;
+						line-height: 					$c-overlay-font-lineheight-h2;
+
+						@include c-transition(color, .1s);
+						
+						@include breakpoint(small) 		{ font-size: $c-overlay-font-size-h2-small; 	font-weight: $c-overlay-font-weight-h2-small; 	line-height: $c-overlay-font-lineheight-h2-small; 	}
+						@include breakpoint(medium) 	{ font-size: $c-overlay-font-size-h2-medium; 	font-weight: $c-overlay-font-weight-h2-medium; 	line-height: $c-overlay-font-lineheight-h2-medium; 	}
+						@include breakpoint(large) 		{ font-size: $c-overlay-font-size-h2-large; 	font-weight: $c-overlay-font-weight-h2-large; 	line-height: $c-overlay-font-lineheight-h2-large; 	}
+					
+						@include breakpoint(small) 		{ color: $c-colors-blue; }
+						@include breakpoint(large) 		{ color: $c-colors-grey; }
+					}
+			}
+			
+			@include breakpoint(medium) {
+				&:hover
+					{
+						@include c-transition(background-color, .9s);						
+						@include alpha-background-color(rgba(white, 0.65), white);
+						
+						.c-overlay
+							{								
+								h1, h2
+									{
+										color: 							$c-colors-blue;
+										@include c-transition(color, .1s);
+									}
+							}									
+					}
+			}
+	}	
+	
+
+
+// Project frame
+// -------------
+.c-project-frame
+	{
+		padding: 						0; 
+		width: 							100%;
+		z-index: 						1;		
+		overflow: 						auto;
+		padding-top: 					$c-topbar-height-small * 2;
+		@include viewport-unit(height, 100vh);
+			
+		Img
+			{
+				width: 							100%;
+			}
+	}
+.c-project-frame.show-for-small-only
+	{
+		overflow-y: 					scroll;	
+		-webkit-overflow-scrolling: 	touch;		
+	}
+	
+	
+	
+// Project info panel
+// ------------------
+.c-project-info
+	{
+		position: 						fixed;
+		right: 							0;
+		top: 							$c-topbar-height; 
+		width: 							50%;
+		z-index: 						20;		
+		overflow: 						auto;
+		overflow-y: 					scroll;	
+		-webkit-overflow-scrolling: 	touch;
+		
+		background: 					rgb(255, 255, 255); /* The Fallback */
+		background: 					rgba(255, 255, 255, 0.95); 
+		
+		//transform: 						translate(100%,0);
+		@include c-translate (100%,0);
+		@include c-transition(transform, .1s);			
+		
+		@include breakpoint(small only)
+			{ 
+				top: 							$c-topbar-height-small * 2;
+				width: 							100%; 
+			}	
+	}
+.c-project-info.c-active
+	{
+//		transform: 					translate(0,0);
+		@include c-translate (0,0);
+		@include c-transition(transform, .1s);		
+	}
+.js-project-panel-exit 
+	{
+	    display: 					none;
+	    position: 					absolute;
+	    top: 						0;
+	    left: 						0;
+	    width: 						100%;
+	    height: 					100%;
+	    background: 				$offcanvas-exit-background;
+	    cursor: 					pointer;
+	    transition: 				background $offcanvas-transition-length $offcanvas-transition-timing;
+	}		
+	
+
+
+// Content frame
+// -------------
+.c-content-frame
+	{
+		padding: 						0; 
+		width: 							100%;
+		z-index: 						1;		
+		overflow: 						hidden; 		
+		position: 						fixed;
+				
+		@include viewport-unit(height, 100vh);		
+
+		padding-top: 					$c-topbar-height;
+		@include breakpoint(small only)
+			{ 
+				padding-top: 					$c-topbar-height * 1.5;
+				padding-bottom:  				$c-topbar-height * 1.25;
+				padding-bottom: 0;
+				overflow: 						auto;
+				overflow-y: 					scroll;	
+				-webkit-overflow-scrolling: 	touch; 				
+			}
+			
+		.columns
+			{
+				height: 						inherit;
+				background-size: 				cover;
+				background-position: 			center center;
+				background-repeat: 				no-repeat;
+				
+				overflow: 						auto;
+				overflow-y: 					scroll;	
+				-webkit-overflow-scrolling: 	touch; 								
+				
+				Img
+					{
+						width: 100%
+					}								
+			}
+	}
+
+
+	
+// Hamburger
+// ---------
+.c-hamburger
+	{
+		position: 						fixed;
+		left: 							$c-grid / 2;
+		top: 							$c-grid / 2;
+		
+		@include breakpoint(small only)
+			{
+				left: 							21px;
+				top: 							19px;
+			}
+		
+		z-index: 						3;
+		background: 					transparent;		
+		padding: 						5px;
+		margin: 						-.4rem -.8rem;
+		cursor: 						pointer;
+		
+		.c-hamburger-icon 
+			{
+				width: 							$c-grid / 2;
+				height: 						$c-grid / 3;
+				position: 						relative;
+				
+				@include c-rotate (0);
+				-webkit-transition: 			.5s ease-in-out;
+				-moz-transition: 				.5s ease-in-out;
+				-o-transition: 					.5s ease-in-out;
+				transition: 					.5s ease-in-out;
+				
+			}	
+		.c-hamburger-icon span
+			{
+				display: 						block;
+				position: 						absolute;
+				height: 						3px;
+				width: 							100%;
+				background: 					#FFF;
+				border-radius: 					3px;
+				left: 							0;
+				
+				@include c-rotate (0);	
+				-webkit-transition: 			.25s ease-in-out;
+				-moz-transition: 				.25s ease-in-out;
+				-o-transition: 					.25s ease-in-out;
+				transition: 					.25s ease-in-out;
+				
+				@include c-opacity(100);
+			}				
+		.c-hamburger-icon span:nth-child(1) 
+			{
+				top: 							0px;
+			}
+			
+		.c-hamburger-icon span:nth-child(2), .c-hamburger-icon span:nth-child(3) 
+			{
+				top: 							9px;
+			}
+			
+		.c-hamburger-icon span:nth-child(4) 
+			{
+				top: 							18px;
+			}
+			
+		.c-hamburger-icon.open span
+			{
+				background: 					$c-colors-blue;				
+			}
+			
+		.c-hamburger-icon.open span:nth-child(1) 
+			{
+				top: 							9px;
+				width: 							0%;
+				left: 							50%;
+			}
+			
+		.c-hamburger-icon.open span:nth-child(2) 
+			{
+				@include c-rotate(45);
+			}
+			
+		.c-hamburger-icon.open span:nth-child(3) 
+			{
+				@include c-rotate(-45);
+			}
+			
+		.c-hamburger-icon.open span:nth-child(4) 
+			{
+				top: 							18px;
+				width: 							0%;
+				left: 							50%;
+			}			
+	}
+	
+// Call to action
+// --------------
+.c-calltoaction
+	{
+		@include 					c-border-radius('all', .5rem);
+		@include 					c-transition(border-color);
+		
+		border: 					1px solid $c-colors-darkBlue;
+		float: 						left;
+		
+		position: 						absolute;
+		left: 							$c-grid * 1.5;
+		top: 							$c-grid / 2;
+		
+		height: 						2.3rem;
+		line-height: 					2.2rem;
+		z-index: 						3;
+		
+		text-align: 					center;
+		margin: 						0;
+		width: 							13.5rem;
+		
+		@include breakpoint(small only)
+			{
+				margin: 						-.6rem -.8rem;
+				width: 							12rem;						
+			}
+		
+		cursor: 						pointer;
+		overflow: 						hidden;	
+		
+		&:hover
+			{
+				border-color: 					white;
+			}				
+		
+		a, span
+			{
+				text-transform: 				uppercase;
+				text-decoration: 				none;
+				font-weight: 					$c-font-weight-bold;
+				font-size: 						1.2rem;																
+				color: 							white;
+				padding: 						0 1rem 0 0rem;
+				@include breakpoint(small only)
+					{
+						padding: 						0 1rem 0 0rem;					
+					}
+				display: 						block;
+				float: 							left;
+			}						
+			
+		.c-icon
+			{
+				font-size: 						1.4rem;
+				padding: 						.4rem 1rem 0 1.5rem;
+				
+				@include breakpoint(small only)
+					{
+						padding: 						.5rem .5rem 0 1rem;				
+					}
+			}
+		.c-telefoonnr,
+		.c-belmijnu
+			{	
+/*				@include breakpoint(small only)
+					{
+						padding: 						-.5rem .5rem 0 1rem;
+					} */
+				position: 						absolute;
+				top: 							0;
+				left: 3.5rem;
+				@include breakpoint(small only)
+					{
+						left: 							3rem;
+					}
+			}
+		.c-belmijnu
+			{
+				top: 							20px;
+			}			
+	}
+	
+	
+// Loader
+// -----
+.c-loader
+	{
+		@include loader();
+	}
+.c-input-loader
+	{
+		.c-input-loader-spinner
+			{
+				@include loader($width: 2.2rem, $height: 2.2rem, $margin: -1.1rem auto 0 -1.1rem);
+			}
+			
+		@include breakpoint(small only)
+			{
+				.c-input-loader-spinner
+					{
+						@include loader($width: 2rem, $height: 2rem, $margin: -1rem auto 0 -1rem);
+					}
+			}
+			
+	}
+	
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: 					rotate(0deg);
+    transform: 							rotate(0deg);
+  }
+  100% {
+    -webkit-transform: 					rotate(360deg);
+    transform: 							rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: 					rotate(0deg);
+    transform: 							rotate(0deg);
+  }
+  100% {
+    -webkit-transform: 					rotate(360deg);
+    transform: 							rotate(360deg);
+  }
+}
+
+
+
+// Scroll indicator
+// ----------------
+.c-arrow
+	{
+		position: 							absolute;
+		bottom: 							$c-grid/2;
+		right: 								$c-grid/2;
+		
+		@include breakpoint(small only)
+			{
+				bottom: 							$c-grid*1.5;
+				right: 								$c-grid/3;
+			}
+		
+		height: 							$c-grid;
+		width: 								$c-grid/2 - .1rem;
+											
+		display: 							block;
+		overflow: 							hidden;
+		z-index: 							10;
+											
+		cursor: 							pointer;
+		text-align: 						center;
+			
+		-webkit-animation-fill-mode: 		both;
+		-moz-animation-fill-mode: 			both;
+		-ms-animation-fill-mode: 			both;
+		-o-animation-fill-mode: 			both;
+	
+	            animation-iteration-count: 	infinite;
+	       -moz-animation-iteration-count: 	infinite;
+	    -webkit-animation-iteration-count: 	infinite;
+	
+		animation-fill-mode: 				both;
+		
+		-webkit-animation-duration: 		2s;
+		-moz-animation-duration: 			2s;
+		-ms-animation-duration: 			2s;
+		-o-animation-duration: 				2s;
+		animation-duration: 				2s;
+
+		-webkit-animation-name: 			bounce;
+		-moz-animation-name: 				bounce;
+		-o-animation-name: 					bounce;
+		animation-name: 					bounce;	
+		
+		@include c-opacity(100);		
+		@include c-transition(opacity, .5s);		
+	}
+.c-arrow.c-deactive
+	{
+		@include c-opacity(0);						
+		@include c-transition(opacity, .5s);		
+	}		
+.c-arrow::after
+	{
+		position: 							absolute;	
+		left: 								0;				
+		bottom: 							5px;
+		width: 								100%;
+		height: 							$c-grid/2;
+		content: 							'';
+
+		border-bottom: 						1px solid $c-colors-grey;
+		border-right: 						1px solid $c-colors-grey;
+
+		@include c-rotate(45);
+	}
+.c-arrow::before
+	{
+		position: 							absolute;
+		left: 								50%;
+		bottom: 							1px;
+		height: 							$c-grid - .1rem;
+		width: 								.1rem;
+		content: 							'';
+
+		background-color: 					$c-colors-grey;
+		margin-left: 						-1px;
+	}
+@-webkit-keyframes bounce 
+	{
+		0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0); }	
+		40% {-webkit-transform: translateY(-20px);}
+		60% {-webkit-transform: translateY(-10px);}
+	}
+@-moz-keyframes bounce 
+	{
+		0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+		40% {-moz-transform: translateY(-20px);}
+		60% {-moz-transform: translateY(-10px);}
+	}
+@-o-keyframes bounce 
+	{
+		0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+		40% {-o-transform: translateY(-20px);}
+		60% {-o-transform: translateY(-10px);}
+	}
+@keyframes bounce 
+	{
+		0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+		40% {transform: translateY(-20px);}
+		60% {transform: translateY(-10px);}
+	}
+			
+
+// Topbar
+// ------
+.c-topbar-sticky
+	{
+		position: 						fixed;
+		width: 							100%;
+		z-index: 						2;
+		height: 						$c-topbar-height;
+		
+		@include breakpoint(small only) 		
+			{				
+				height: 				$c-topbar-height-small;		
+
+				@include c-translate (0,-$c-topbar-height * 2);
+				@include c-transition(transform, .1s);
+			}
+		
+		p
+			{
+				font-size: 						$c-topbar-font-size-p;
+				font-weight: 					$c-topbar-font-weight-p;
+				line-height: 					$c-topbar-font-lineheight-p;
+				letter-spacing: 				$c-topbar-font-letterspacing-p;		
+				
+				@include breakpoint(small) 		{ font-size: $c-topbar-font-size-p-small;	line-height: $c-topbar-font-lineheight-p-small; font-weight: $c-topbar-font-weight-p; }		
+				@include breakpoint(medium) 	{ font-size: $c-topbar-font-size-p-medium;	line-height: $c-topbar-font-lineheight-p-medium; font-weight: $c-topbar-font-weight-p; }		
+				@include breakpoint(large) 		{ font-size: $c-topbar-font-size-p-large;	line-height: $c-topbar-font-lineheight-p-large; font-weight: $c-topbar-font-weight-p; }				
+				
+				margin: 						0;
+				color: 							$c-colors-blue;
+				text-align: 					center;
+				float: 							left;
+				width: 							66%;
+				margin-left: 					17%;
+				
+				@include breakpoint(small only) 		
+					{
+						width: 							70%;
+						margin-left: 					15%;
+					}
+					
+				@include breakpoint(medium only) 		
+					{
+						width: 							64%;
+						margin-left: 					18%;
+					}					
+					
+				@include breakpoint(medium) 	
+					{ 
+						@include c-opacity(0);
+						@include c-transition(opacity, .1s);
+					}
+					
+				strong
+					{
+						font-weight: 					$c-topbar-font-weight-p-strong;							
+					}
+			}
+		p.c-fadein
+			{
+				@include c-opacity(100);										
+				@include c-transition(opacity, 2.5s);								
+			}
+			
+		a	
+			{
+				color: 							inherit;
+				text-decoration: 				none;
+
+				&:hover
+					{
+						color: 							$c-colors-blue;
+					}
+			}
+		a.c-button	
+			{				
+				float: 							right;
+				background-color: 				$c-colors-lightGrey-bg;
+				text-decoration: 				none;
+
+				
+				@include c-border-radius(all, ($c-topbar-height/2.5)/2);
+				margin-right: 					$c-topbar-height/3.25;
+				line-height: 					$c-topbar-height/2.5;
+				width: 							$c-topbar-height/2.5;
+				margin-top: 					$c-topbar-height/3.25;	
+				
+				@include breakpoint(small only) 				
+					{
+						@include c-border-radius(all, 20px);
+						margin-right: 					10px;
+						line-height: 					40px;
+						width: 							40px;
+						margin-top: 					10px;							
+					}
+					
+				text-align: 					center;
+				
+				font-weight: 					$c-font-weight-bold;
+				color: 							$c-colors-grey;
+				text-transform: 				uppercase;
+				cursor: 						pointer;
+				
+				&.c-icon
+					{
+						font-family: 					$c-font-family-icon;
+						font-size: 						$c-topbar-font-size-icon;
+						font-style: 					italic;
+						text-transform: 				lowercase;
+					}
+					
+				&:hover, &.c-active 
+					{
+						background-color: 				$c-colors-blue;		
+						color: 							#fff;									
+					}
+				&.c-active
+					{
+						font-family: 					$c-font-family;
+						font-size: 						$c-topbar-font-size-icon-close;
+						font-style: 					normal;
+						text-transform: 				uppercase;						
+					}
+
+			}
+		.c-topbar-left
+			{
+				background: 				$c-colors-blue;
+				height: 					inherit;
+				
+				.c-profile
+					{
+						width: 						50px;
+						margin: 					1.25rem;
+						float: 						right;
+						cursor: 					pointer;
+						
+						@include breakpoint(small only)
+							{
+								width: 						4rem;
+								margin: 					1rem;
+							}						
+							
+						@include c-translate (0,-7rem);						
+						@include c-transition(transform, .1s);						
+					}
+				.c-profile.c-active
+					{
+						@include c-translate (0,0);					
+						@include c-transition(transform, .1s);						
+						@include c-transition-delay(.5s);						
+					}
+			}
+		.c-topbar-right
+			{
+				background: 				white;
+				height: 					inherit;
+				
+				@include breakpoint(small only)
+					{
+						p
+							{
+								text-align: left;
+								margin: 0 $c-grid / 3;
+							}
+					}				
+			}
+			
+	}
+	
+.c-topbar-sticky.c-active
+	{
+		@include breakpoint(small only) 		
+			{
+				@include c-transition(transform, .1s);
+				@include c-translate (0,0);
+//				transform: 					translate(0,0);
+			}
+		p
+			{
+				@include c-opacity(100);										
+				@include c-transition(opacity, 2.5s);								
+			}
+		.c-topbar-left
+			{
+				.c-profile							
+					{
+//						transform: 					translate(0,0);
+						@include c-translate (0,0);						
+						@include c-transition(transform, .1s);						
+						@include c-transition-delay(.5s);						
+					}
+			}
+	}
+	
+	
+	
+// Off canvas
+// ----------
+.off-canvas
+	{
+		overflow: 						auto;
+		background-color: 				$c-offcanvas-background-color;
+		height: 						100%;
+		
+		.c-menu
+			{
+				margin: 						$c-topbar-height + ($c-grid/2) $c-grid/2 ($c-grid)-1rem;
+				@include breakpoint(small only)
+					{
+						margin: 						$c-topbar-height-small + ($c-grid/4) $c-grid/2 ($c-grid/2) 22px;	
+					}
+								
+				a
+					{
+						display: 						block;
+						
+						font-size: 						$c-offcanvas-font-size-a;
+						font-weight: 					$c-offcanvas-font-weight-a;
+						line-height: 					$c-offcanvas-font-lineheight-a;
+						letter-spacing: 				$c-offcanvas-font-letterspacing-a;
+						
+						@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-a-small; line-height: $c-offcanvas-font-lineheight-a-small;	}	
+						@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-a-medium; line-height: $c-offcanvas-font-lineheight-a-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-a-large; line-height: $c-offcanvas-font-lineheight-a-large;	}
+						
+						text-decoration: 				none;
+						color: 							$c-colors-grey;				
+						
+						&:hover
+							{
+								color: 						$c-colors-blue;
+							}
+					}
+				a.c-active
+					{
+						color: 						$c-colors-blue;
+					}
+			}
+		.c-medot-sites
+			{
+/*				@include 						c-border-radius(all, 1rem);
+				padding: 						$c-grid / 2;
+				border: 						1px solid $c-colors-lightGrey-bg;
+				background-color: 				$c-colors-lightGrey-bg; */
+				
+				strong
+					{
+						color: 						$c-colors-medotsites;
+					}
+				a
+					{
+						color: 						$c-colors-medotsites-text;
+						&:hover
+							{
+								text-decoration: 			underline;
+							}
+					}
+			}
+		.c-menu-social
+			{
+				$width-offcanvas: 				pxToRem($offcanvas-size);
+				$width-cnt: 					($width-offcanvas - $c-grid);
+
+				width: 							$width-cnt;								
+				margin: 						0 0 $c-grid $c-grid/2;
+				
+				@include breakpoint(small only)
+					{
+						margin: 						0 0 $c-grid/2 22px;						
+					} 
+				
+				a.fa
+					{
+						font-size: 						$c-offcanvas-font-size-fa;
+						
+						@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-fa-small;	}	
+						@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-fa-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-fa-large;	}						
+						
+						color: 							$c-colors-grey;
+						background: 					$c-colors-lightGrey-bg;
+						text-align: 					center;
+						
+						$width-btn: 					pxToRem(36px);
+						$margin-btn: 					($width-cnt - ($width-btn*4)) / 6;
+												
+						@include c-border-radius(all, $width-btn/2);
+
+						width: 							$width-btn;
+						height: 						$width-btn;
+						line-height: 					$width-btn;
+						
+						margin: 						0 $margin-btn / 3;
+						cursor: 						pointer;
+						text-decoration: 				none;
+						
+						&:hover
+							{
+								color: 							$c-colors-blue;
+							}
+					}
+				a.fa:nth-child(1)
+					{
+						margin-left: 0;
+					}
+				a.fa:nth-child(4)
+					{
+						margin-right: 0;
+					}	
+			}
+		p
+			{				
+				font-size: 						$c-offcanvas-font-size-p;
+				line-height: 					$c-offcanvas-font-lineheight-p;
+				letter-spacing: 				$c-offcanvas-font-letterspacing-p;					
+				
+				@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-p-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-p-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-p-large;	}				
+			
+				margin: 						0 $c-grid / 2 $c-grid/2;
+				@include breakpoint(small only)
+					{ 
+						margin: 0 $c-grid / 2 $c-grid/2 22px;
+					}				
+
+				color: 							$c-colors-text;
+				
+				strong
+					{
+						font-size: 						$c-offcanvas-font-size-p-strong;
+						line-height: 					$c-offcanvas-font-lineheight-p-strong;
+						
+						@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-p-strong-small;		}	
+						@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-p-strong-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-p-strong-large;		}
+						
+						color: 							$c-colors-blue;				
+					}
+				a
+					{
+						color: inherit;
+						text-decoration: none;
+					}
+			}
+		hr
+			{
+				margin: 						0 $c-grid / 2 $c-grid/2;
+				@include breakpoint(small only)
+					{ 
+						margin: 0 $c-grid/2 $c-grid/2 22px;
+					}				
+				
+				border-top: 					1px solid $c-colors-lightGrey-bg;
+			}
+	}	
+
+
+
+// Homepage
+// --------
+.c-homepage.show-for-small-only
+	{
+		.c-homepage-left {}
+		
+		.c-homepage-right
+			{
+				position: 						absolute;
+				bottom: 						0;
+				left: 							0;
+				
+				width: 							100%;
+				height: 						$c-topbar-height;
+				@include breakpoint(small only)	
+					{
+						height: 						$c-topbar-height-small;						
+					}
+				background-color: 				white;
+			}	
+	}
+	
+.c-homepage-left
+	{
+		background-color: 				$c-colors-blue;
+
+		.c-profile
+			{
+				position: 						relative;
+				top: 							50%;
+				float: 							right;
+				margin-right: 					$c-grid;
+				margin-top: 					-$c-topbar-height/2;				
+				text-align: 					right;				
+				color: 							#fff;
+
+				@include c-opacity(100);
+				
+				@include c-translateY(-50%);
+
+				@include c-transition(opacity, .1s);
+				@include c-transition-delay(.25s);				
+				
+				@include breakpoint(small only) 
+					{
+						float: 							none;
+						text-align: 					center;
+						margin-right: 					0;
+						margin-top: 					0;
+						@include c-translateY(-75%);
+					}					
+				
+				Img
+					{
+						@include breakpoint(small) // small & medium
+							{
+								height: 						75px;
+								width: 							75px;								
+							}
+						@include breakpoint(large)
+							{
+								height: 						100px;
+								width: 							100px;								
+							}
+				
+						@include c-opacity(100);
+						@include c-transition(opacity, .1s);
+						@include c-transition-delay(.25s);													
+						
+					}
+				Img.c-deactive
+					{
+						@include c-opacity(0);						
+						@include c-transition(opacity, .1s);												
+					}			
+					
+				Img.c-fadein
+					{
+						@include c-opacity(100);										
+						@include c-transition(opacity, .5s);														
+					}
+			}
+
+			.c-profile.c-deactive
+				{
+					@include c-opacity(0);					
+					@include c-transition(opacity, .1s);												
+				}			
+			
+			
+	}
+
+.c-homepage-right
+	{
+		.c-written
+			{
+				font-size: 						$c-font-size-p-writtenhomepage;
+				letter-spacing: 				$c-font-letterspacing-p-writtenhomepage;
+				position: 						relative;
+				top: 							50%;
+				@include c-translateY (-50%);
+				margin-top: 					$c-grid - $c-topbar-height/2;
+								
+				@include breakpoint(small) 		{ font-size: $c-font-size-p-writtenhomepage-small;	}		
+				@include breakpoint(medium) 	{ font-size: $c-font-size-p-writtenhomepage-medium;	}		
+				@include breakpoint(large) 		{ font-size: $c-font-size-p-writtenhomepage-large; 	}
+				
+				@include breakpoint(small only) 
+					{
+						margin-top: 					0;
+					}												
+			}			
+	}
+	
+	
+	
+// Quote
+// -----
+.c-written
+	{
+		text-align: 					center;
+		color: 							$c-colors-lightGrey;
+		
+		@include c-opacity(100);
+		
+		@include c-transition(opacity, .1s);
+		@include c-transition-delay(.25s);				
+		
+	}
+.c-written.c-deactive
+	{
+		@include c-opacity(0);						
+		@include c-transition(opacity, .1s);												
+	}			
+.c-written.c-fadein
+	{
+		@include c-opacity(100);										
+		@include c-transition(opacity, 2.5s);								
+	}		
+	
+	
+	
+// Content panels
+// --------------
+.c-content-cnt
+	{
+		overflow: 						auto;
+		height: 						inherit;
+		padding: 						$c-grid;
+		@include breakpoint(small only) 
+			{ 
+				padding: $c-grid/3;
+				padding-bottom: 0; 
+			}
+		@include breakpoint(medium only) 
+			{ 
+				padding: $c-grid/2; 
+			}		
+		
+		figcaption
+			{
+				font-size: 						$c-contentpanel-font-size-figcaption;
+				font-weight: 					$c-contentpanel-font-weight-figcaption;
+				line-height: 					$c-contentpanel-font-lineheight-figcaption;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-figcaption;					
+				
+				@include breakpoint(small) 		{ font-size: $c-contentpanel-font-size-figcaption-small;	font-weight: $c-contentpanel-font-weight-figcaption-small; 	line-height: $c-contentpanel-font-lineheight-figcaption-small; 	}
+				@include breakpoint(medium) 	{ font-size: $c-contentpanel-font-size-figcaption-medium;	font-weight: $c-contentpanel-font-weight-figcaption-medium; line-height: $c-contentpanel-font-lineheight-figcaption-medium; }
+				@include breakpoint(large) 		{ font-size: $c-contentpanel-font-size-figcaption-large;	font-weight: $c-contentpanel-font-weight-figcaption-large; 	line-height: $c-contentpanel-font-lineheight-figcaption-large; 	}
+				
+				font-style: italic;
+				color: $c-colors-darkGrey;
+				margin-top: $c-grid/8;
+				text-align: right;
+				border-bottom: 1px solid $c-colors-lightGrey-bg;
+				padding-bottom: $c-grid/8;
+				
+				@include breakpoint(small only){
+					margin-top: $c-grid/4;
+					padding-bottom: $c-grid/8;
+					
+				}
+			}
+		h2
+			{
+				font-size: 						$c-contentpanel-font-size-h2;
+				font-weight: 					$c-contentpanel-font-weight-h2;
+				line-height: 					$c-contentpanel-font-lineheight-h2;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-h2;					
+				
+				@include breakpoint(small) 		{ font-size: $c-contentpanel-font-size-h2-small;	font-weight: $c-contentpanel-font-weight-h2-small; 	line-height: $c-contentpanel-font-lineheight-h2-small; 	}
+				@include breakpoint(medium) 	{ font-size: $c-contentpanel-font-size-h2-medium;	font-weight: $c-contentpanel-font-weight-h2-medium; line-height: $c-contentpanel-font-lineheight-h2-medium; }
+				@include breakpoint(large) 		{ font-size: $c-contentpanel-font-size-h2-large;	font-weight: $c-contentpanel-font-weight-h2-large; 	line-height: $c-contentpanel-font-lineheight-h2-large; 	}
+				
+				margin-top: 					$c-grid;
+				margin-bottom: 					-$c-grid/2;
+				color: 							$c-colors-blue;
+			}
+					
+		h3
+			{
+				font-size: 						$c-contentpanel-font-size-h3;
+				font-weight: 					$c-contentpanel-font-weight-h3;
+				line-height: 					$c-contentpanel-font-lineheight-h3;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-h3;					
+				
+				@include breakpoint(small) 		{ font-size: $c-contentpanel-font-size-h3-small;	font-weight: $c-contentpanel-font-weight-h3-small; 	line-height: $c-contentpanel-font-lineheight-h3-small; 	}
+				@include breakpoint(medium) 	{ font-size: $c-contentpanel-font-size-h3-medium;	font-weight: $c-contentpanel-font-weight-h3-medium; line-height: $c-contentpanel-font-lineheight-h3-medium; }
+				@include breakpoint(large) 		{ font-size: $c-contentpanel-font-size-h3-large;	font-weight: $c-contentpanel-font-weight-h3-large; 	line-height: $c-contentpanel-font-lineheight-h3-large; 	}
+				
+				color: 							$c-colors-text;
+				margin-bottom: 					$c-grid/8;
+			}
+
+		h4, h1
+			{
+				font-size: 						$c-contentpanel-font-size-h4;
+				font-weight: 					$c-contentpanel-font-weight-h4;
+				line-height: 					$c-contentpanel-font-lineheight-h4;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-h4;					
+				
+				@include breakpoint(small) 		{ font-size: $c-contentpanel-font-size-h4-small;	font-weight: $c-contentpanel-font-weight-h4-small; 	line-height: $c-contentpanel-font-lineheight-h4-small; 	}
+				@include breakpoint(medium) 	{ font-size: $c-contentpanel-font-size-h4-medium;	font-weight: $c-contentpanel-font-weight-h4-medium; line-height: $c-contentpanel-font-lineheight-h4-medium; }
+				@include breakpoint(large) 		{ font-size: $c-contentpanel-font-size-h4-large;	font-weight: $c-contentpanel-font-weight-h4-large; 	line-height: $c-contentpanel-font-lineheight-h4-large; 	}
+				
+				margin-bottom: 					$c-grid/2;
+				color: 							$c-colors-blue;
+			}
+		p, li
+			{
+				font-size: 						$c-contentpanel-font-size-p;
+				font-weight: 					$c-contentpanel-font-weight-p;
+				line-height: 					$c-contentpanel-font-lineheight-p;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-p;					
+				
+				@include breakpoint(small) 		{ font-size: $c-contentpanel-font-size-p-small;		font-weight: $c-contentpanel-font-weight-p-small; 	line-height: $c-contentpanel-font-lineheight-p-small; 	}
+				@include breakpoint(medium) 	{ font-size: $c-contentpanel-font-size-p-medium;	font-weight: $c-contentpanel-font-weight-p-medium; 	line-height: $c-contentpanel-font-lineheight-p-medium; 	}
+				@include breakpoint(large) 		{ font-size: $c-contentpanel-font-size-p-large;		font-weight: $c-contentpanel-font-weight-p-large; 	line-height: $c-contentpanel-font-lineheight-p-large; 	}
+				
+				margin-top: 					$c-grid/1.5;
+				margin-bottom: 0;
+				color: 							$c-colors-text;
+				
+				a
+					{
+						font-size: 						inherit;
+						font-weight: 					inherit;
+						text-decoration: 				underline;
+						
+						&:hover
+							{
+								text-decoration: 				none;
+							}
+							
+						.fa
+							{
+								margin-right: .5rem;
+							}
+					}
+			}
+		p.c-small
+			{
+				font-size: 						$c-font-size-psmall;
+				font-weight: 					$c-font-weight-psmall;
+				line-height: 					$c-font-lineheight-psmall;
+				letter-spacing: 				$c-font-letterspacing-psmall;
+				
+				@include breakpoint(small) 		{ font-size: $c-font-size-psmall-small;		font-weight: $c-font-weight-psmall-small;	line-height: $c-font-lineheight-psmall-small; 	}		
+				@include breakpoint(medium) 	{ font-size: $c-font-size-psmall-medium; 	font-weight: $c-font-weight-psmall-medium;	line-height: $c-font-lineheight-psmall-medium; 	}		
+				@include breakpoint(large) 		{ font-size: $c-font-size-psmall-large;		font-weight: $c-font-weight-psmall-large;	line-height: $c-font-lineheight-psmall-large;  	}
+						
+			}			
+
+		ul
+			{
+				list-style: 					none;
+				padding: 						0;
+			}
+		li
+			{
+				margin-top: 					0;
+				padding-left: 					2.5rem;
+				
+				&:before
+					{
+						content: 						"\f00c";	
+						font-family: 					'FontAwesome';
+						display: 						inline-block;
+						margin-left: 					2.5rem;
+						width: 							2.5rem;
+					}
+			}
+		a
+			{
+				color: 							$c-colors-blue;
+				text-decoration: 				none;
+				font-weight: 					$c-font-weight-bold;
+				&:hover
+					{
+						text-decoration: 				underline;
+					}
+			}
+		hr
+			{
+				margin: 						$c-grid 0;
+				@include breakpoint(small) 		{ margin: 						$c-grid/2 0; }
+			}
+		blockquote
+			{
+				font-family: 					$c-font-family-quote;
+				font-style: 					italic;
+				
+				font-size: 						$c-contentpanel-font-size-blockquote;
+				font-weight: 					$c-contentpanel-font-weight-blockquote;
+				line-height: 					$c-contentpanel-font-lineheight-blockquote;
+				letter-spacing: 				$c-contentpanel-font-letterspacing-blockquote;					
+				
+				@include breakpoint(small) 
+					{ 
+						font-size: 						$c-contentpanel-font-size-blockquote-small; 
+						font-weight: 					$c-contentpanel-font-weight-blockquote-small; 
+						line-height: 					$c-contentpanel-font-lineheight-blockquote-small; 
+					}
+				@include breakpoint(medium) 	
+					{ 
+						font-size: 						$c-contentpanel-font-size-blockquote-medium; 
+						font-weight: 					$c-contentpanel-font-weight-blockquote-medium; 
+						line-height: 					$c-contentpanel-font-lineheight-blockquote-medium; 	
+					}
+				@include breakpoint(large) 		
+					{ 
+						font-size: 						$c-contentpanel-font-size-blockquote-large; 
+						font-weight: 					$c-contentpanel-font-weight-blockquote-large; 
+						line-height: 					$c-contentpanel-font-lineheight-blockquote-large; 	
+					}
+					
+				position: 						relative;	
+				width: 							90%;
+				margin-top: 					$c-grid*1.5;
+				margin-bottom: 					$c-grid;
+				color: 							$c-colors-blue;
+			}	
+			
+		blockquote:before 
+			{
+				font-size: $c-contentpanel-font-size-blockquote-quotes;				
+
+				@include breakpoint(small)  { font-size: $c-contentpanel-font-size-blockquote-quotes-small;  }
+				@include breakpoint(medium) { font-size: $c-contentpanel-font-size-blockquote-quotes-medium; }
+				@include breakpoint(large)  { font-size: $c-contentpanel-font-size-blockquote-quotes-large;  }
+				
+				position: 						absolute;
+				left: 							-4rem;
+				top: 							0;
+				
+				display: 						block;
+				content: 						"\201C";
+
+				color: 							$c-colors-lightGrey;
+			}
+
+		blockquote cite 
+			{
+				font-size: 						$c-contentpanel-font-size-blockquote-cite;			
+
+				@include breakpoint(small)  { font-size: $c-contentpanel-font-size-blockquote-cite-small;  }
+				@include breakpoint(medium) { font-size: $c-contentpanel-font-size-blockquote-cite-medium; }
+				@include breakpoint(large)  { font-size: $c-contentpanel-font-size-blockquote-cite-large;  }
+								
+				color: 							$c-colors-text;
+				
+				display: 						block;
+				margin-top: 					$c-grid/8; 
+			}
+ 
+		blockquote cite:before 
+			{
+				content: "\2014 \2009";
+			}
+			
+		.c-about-me
+			{
+				@include breakpoint(medium)
+					{ 
+						margin-left: 					-$c-grid/2;
+						margin-right: 					-$c-grid/2;
+					}
+				@include breakpoint(large)
+					{ 
+						margin-left: 					-$c-grid;
+						margin-right: 					-$c-grid;
+					}
+				
+				margin-bottom: 					$c-grid;
+				margin-top: 					$c-grid;
+				padding: 						$c-grid;
+				padding-bottom: 				0;
+				border-top: 					1px solid $c-colors-lightGrey;
+				
+				@include breakpoint(small only)
+					{
+						padding: 						$c-grid/2 0 0;
+						margin-bottom: 					$c-grid/2;
+					}
+									
+				.c-profile
+					{
+						width: 							10%;
+						float: 							left;
+						margin: 						0;
+						
+						@include breakpoint(small only) {
+							width: 							15%;
+						}
+					}
+				p
+					{
+						margin: 						0;
+						margin-left: 					15%;
+						font-size: 						$c-footer-font-size-p;
+						line-height: 					$c-footer-font-lineheight-p;
+						letter-spacing: 				$c-font-letterspacing-p;					
+						
+						@include breakpoint(small) 		{ font-size: $c-footer-font-size-p-small;	}	
+						@include breakpoint(medium) 	{ font-size: $c-footer-font-size-p-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-footer-font-size-p-large;	}						
+						
+						@include breakpoint(small only) {
+							margin-left: 					20%;
+						}
+					}
+				h3
+					{
+						margin-left: 					15%;
+						color: 							$c-colors-blue;
+						font-weight: 					$c-font-weight-bold;
+						
+						font-size: 						$c-offcanvas-font-size-h3-strong;
+						
+						@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-h3-strong-small;	}	
+						@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-h3-strong-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-h3-strong-large;	}						
+
+						@include breakpoint(small only) {
+							margin-left: 					20%;
+						}
+					}
+			}	
+			
+		.c-footer
+			{
+				@include breakpoint(small) 		
+					{
+						margin-left: 					-$c-grid/2;
+						margin-right: 					-$c-grid/2;
+					}
+				@include breakpoint(medium) 	
+					{
+						margin-left: 					-$c-grid/2;
+						margin-right: 					-$c-grid/2;
+						margin-bottom: 					-$c-grid;						
+					}
+				@include breakpoint(large)
+					{ 
+						margin-left: 					-$c-grid;
+						margin-right: 					-$c-grid;
+					}					
+					
+				
+				h3
+					{
+						font-weight: 					$c-font-weight-bold;
+					}
+					
+				p
+					{						
+						width: 					100%;
+
+						@include breakpoint(xlarge){
+							width: 					65%;
+						}
+					}
+				hr
+					{
+						width: 					85%;
+					}
+					
+				.c-menu-social a
+					{
+						font-weight: 			$c-font-weight-light;
+					}
+				
+			}				
+	}
+	
+	
+// Footer
+// ------
+.c-footer
+	{
+		padding: 						$c-grid;
+		background: 					$c-colors-lightGrey-bg;
+		color: 							$c-colors-text;	
+		text-align: 					center;
+		
+		@include breakpoint(small only)
+			{
+				padding: 						$c-grid / 2;
+			}
+		
+		h3
+			{
+				color: 							$c-colors-blue;
+				font-size: 						$c-offcanvas-font-size-h3-strong;
+				
+				@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-h3-strong-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-h3-strong-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-h3-strong-large;	}					
+			}
+		a
+			{
+				font-size: 						$c-footer-font-size-p;
+				line-height: 					$c-footer-font-lineheight-p;
+				letter-spacing: 				$c-font-letterspacing-p;					
+				
+				@include breakpoint(small) 		{ font-size: $c-footer-font-size-p-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-footer-font-size-p-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-footer-font-size-p-large;	}
+				
+				font-weight: 					$c-font-weight-light;
+				color: 							$c-colors-text;	
+				margin-bottom: 					$c-grid/2;			
+				
+				span
+					{
+						margin-right: 					.5rem;
+						margin-left: 					1.5rem;
+					}
+				
+			}
+		p
+			{
+				font-size: 						$c-footer-font-size-p;
+				line-height: 					$c-footer-font-lineheight-p;
+				letter-spacing: 				$c-font-letterspacing-p;					
+				
+				@include breakpoint(small) 		{ font-size: $c-footer-font-size-p-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-footer-font-size-p-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-footer-font-size-p-large;	}				
+				
+				margin: 						$c-grid/8 auto 0;
+				width: 							50%;
+				
+				@include breakpoint(small only)
+					{
+						width: 							100%;
+						margin: 						$c-grid/8 auto $c-grid/6;
+					}
+
+				a
+					{
+						color: 							$c-colors-blue;
+						text-decoration: 				none;
+						
+						span
+							{
+								margin-right: 					$c-grid/8;
+							}
+						
+						&:hover
+							{
+								text-decoration: 				underline;
+							}
+					}				
+			}
+		p.c-small
+			{
+				font-size: 						$c-footer-font-size-p-csmall;
+				
+				@include breakpoint(small) 		{ font-size: $c-footer-font-size-p-csmall-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-footer-font-size-p-csmall-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-footer-font-size-p-csmall-large;	}				
+			}
+		hr
+			{
+				width: 							50%;
+				margin: 						$c-grid/2 auto $c-grid/2.5 auto;
+				
+				@include breakpoint(small only)
+					{				
+						width: 							100%;
+					}
+			}
+		input
+			{
+				width: 							pxToRem(300px);
+				margin: 						$c-grid/2 $c-grid/16 0;
+				
+				@include breakpoint(medium only)
+					{
+						width: 							100%;
+					}		
+				@include breakpoint(small only) 		
+					{
+						width: 							66%;
+						margin: 						$c-grid/4 1% $c-grid/2;
+						float: 							left;
+					}
+			}
+		input[type="submit"]
+			{
+				width: 							pxToRem(135px);
+				
+				@include breakpoint(medium only)
+					{
+						width: 							40%; 						
+					}
+				@include breakpoint(small only) 		
+					{ 
+						width: 							30%; 
+						float: 							left;
+					} 				
+			}
+		.c-input-loader
+			{
+				position: relative;
+				
+				$height: 						pxToRem(36px);
+				
+				margin: 						$c-grid/2 auto;
+				width: 							pxToRem(450px);
+				
+				background-color: 				$c-colors-blue;
+				border-color: 					$c-colors-blue;
+				font-weight: 					$c-font-weight-bold;
+				text-transform: 				none;
+				color: 							white;
+				
+				line-height: 					$height / 1.2;
+				
+				font-size: 						$c-footer-font-size-p;
+				letter-spacing: 				$c-font-letterspacing-p;					
+				
+				@include breakpoint(small) 		{ font-size: $c-footer-font-size-p-small;	}	
+				@include breakpoint(medium) 	{ font-size: $c-footer-font-size-p-medium;	}
+				@include breakpoint(large) 		{ font-size: $c-footer-font-size-p-large;	}									
+				
+				@include breakpoint(small only)
+					{
+						margin: 						$c-grid/2.5 1% $c-grid/2;
+						width: 							100%;
+						line-height: 					$height / 1.6;
+					}
+			}
+		.c-menu-social
+			{
+				a.fa
+					{
+						font-size: 						$c-offcanvas-font-size-fa;
+						
+						@include breakpoint(small) 		{ font-size: $c-offcanvas-font-size-fa-small;	}	
+						@include breakpoint(medium) 	{ font-size: $c-offcanvas-font-size-fa-medium;	}
+						@include breakpoint(large) 		{ font-size: $c-offcanvas-font-size-fa-large;	}						
+						
+						color: 							$c-colors-blue;
+						background: 					white;
+						text-align: 					center;
+						
+						$width-btn: 					pxToRem(36px);
+												
+						@include c-border-radius(all, $width-btn/2);
+
+						width: 							$width-btn;
+						height: 						$width-btn;
+						line-height: 					$width-btn;
+						
+						margin: 						0 $c-grid/16 $c-grid/4;
+						cursor: 						pointer;
+						text-decoration: 				none;
+						
+						&:hover
+							{
+								color: 							white;
+								background-color: 				$c-colors-blue;
+							}
+					}
+			}
+	}	
+	
+	
+// js-off-canvas-exit fix
+// ----------------------
+.js-off-canvas-exit
+	{
+		z-index: 999;
+	}	
+	
+		
+	
+
+
+
+
+
+
+
+
+	
+	
+	
+	

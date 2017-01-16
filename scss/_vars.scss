@@ -1,0 +1,419 @@
+$c-version: 								1;
+											
+											
+// Colors									
+// ------									
+$c-colors-blue: 							#0d5e9c;
+$c-colors-lightBlue: 						lighten($c-colors-blue, 15%);
+$c-colors-darkBlue: 						darken($c-colors-blue, 10%);
+
+
+$c-colors-lightGrey: 						#e1e1e1;
+$c-colors-lightGrey-bg: 					#f0f0f0;
+$c-colors-grey: 							#ccc;
+$c-colors-darkGrey: 						#999;
+
+$c-colors-text: 							#666;
+
+
+// Medot Sites
+// -----------
+$c-colors-medotsites: 						#ffd300;
+$c-colors-medotsites-black: 				#000;
+$c-colors-medotsites-text: 					#333;
+
+											
+// Grid										
+// ----										
+$c-grid: 									5rem; // 50 px
+$c-global-radius: 							.1rem;
+											
+																						
+// Typography								
+// ----------								
+$c-font-family: 							'Helvetica Neue', 'Open Sans', sans-serif;
+$c-font-family-written: 					'Caveat', serif;
+$c-font-family-icon: 						'Georgia', serif;
+$c-font-family-quote: 						'Georgia', serif;
+						
+$c-font-weight-light: 						300;
+$c-font-weight-regular: 					400;
+$c-font-weight-bold: 						700;
+											
+$c-font-letterspacing: 						0;
+											
+$c-font-size-p: 							1.4rem;
+$c-font-size-p-small: 						$c-font-size-p;
+$c-font-size-p-medium: 						$c-font-size-p;
+$c-font-size-p-large: 						$c-font-size-p;
+											
+$c-font-weight-p: 							$c-font-weight-light;
+$c-font-weight-p-small: 					$c-font-weight-p;
+$c-font-weight-p-medium: 					$c-font-weight-p;
+$c-font-weight-p-large: 					$c-font-weight-p;
+											
+$c-font-lineheight-p: 						1.3rem;
+$c-font-lineheight-p-small: 				$c-font-lineheight-p;
+$c-font-lineheight-p-medium: 				$c-font-lineheight-p;
+$c-font-lineheight-p-large: 				$c-font-lineheight-p;
+
+$c-font-letterspacing-p: 					.0.5rem;
+
+$c-font-size-psmall: 						1.2rem;
+$c-font-size-psmall-small: 					$c-font-size-psmall;
+$c-font-size-psmall-medium: 				$c-font-size-psmall;
+$c-font-size-psmall-large: 					$c-font-size-psmall;
+											
+$c-font-weight-psmall: 							$c-font-weight-light;
+$c-font-weight-psmall-small: 					$c-font-weight-psmall;
+$c-font-weight-psmall-medium: 					$c-font-weight-psmall;
+$c-font-weight-psmall-large: 					$c-font-weight-psmall;
+											
+$c-font-lineheight-psmall: 						1.75rem;
+$c-font-lineheight-psmall-small: 				$c-font-lineheight-psmall;
+$c-font-lineheight-psmall-medium: 				$c-font-lineheight-psmall;
+$c-font-lineheight-psmall-large: 				$c-font-lineheight-psmall;
+
+$c-font-letterspacing-psmall: 					.0.5rem;
+
+																				
+$c-font-size-h1: 							5rem;
+$c-font-size-h1-small: 						2.75rem;
+$c-font-size-h1-medium: 					3.5rem;
+$c-font-size-h1-large: 						$c-font-size-h1;
+											
+$c-font-weight-h1: 							$c-font-weight-bold;
+$c-font-weight-h1-small: 					$c-font-weight-h1;
+$c-font-weight-h1-medium: 					$c-font-weight-h1;
+$c-font-weight-h1-large: 					$c-font-weight-h1;
+											
+$c-font-lineheight-h1: 						5.5rem;
+$c-font-lineheight-h1-small: 				3.75rem;
+$c-font-lineheight-h1-medium: 				4.5rem;
+$c-font-lineheight-h1-large: 				$c-font-lineheight-h1;
+
+$c-font-letterspacing-h1: 					-.1rem;
+																			
+$c-font-size-h2: 							2rem;
+$c-font-size-h2-small: 						1.35rem;
+$c-font-size-h2-medium: 					1.5rem;
+$c-font-size-h2-large: 						$c-font-size-h2;
+											
+$c-font-weight-h2: 							$c-font-weight-light;
+$c-font-weight-h2-small: 					$c-font-weight-h2;
+$c-font-weight-h2-medium: 					$c-font-weight-h2;
+$c-font-weight-h2-large: 					$c-font-weight-h2;
+											
+$c-font-lineheight-h2: 						2.5rem;
+$c-font-lineheight-h2-small: 				1.5rem;
+$c-font-lineheight-h2-medium: 				2rem;
+$c-font-lineheight-h2-large: 				$c-font-lineheight-h2;
+
+$c-font-letterspacing-h2: 					0rem;
+
+
+
+// Quote homepage
+// --------------
+$c-font-size-p-writtenhomepage: 			5rem;
+$c-font-size-p-writtenhomepage-small: 		3rem;
+$c-font-size-p-writtenhomepage-medium: 		4rem;
+$c-font-size-p-writtenhomepage-large: 		$c-font-size-p-writtenhomepage;
+
+$c-font-letterspacing-p-writtenhomepage: 	.0.5rem;
+
+
+// Topbar
+// ------
+$c-topbar-height: 							7.5rem;
+$c-topbar-height-small: 					6rem;
+
+$c-topbar-font-size-p: 						$c-font-size-h2;
+$c-topbar-font-size-p-small: 				$c-font-size-h2-small;
+$c-topbar-font-size-p-medium: 				$c-font-size-h2-medium;
+$c-topbar-font-size-p-large: 				$c-font-size-h2-large;
+
+$c-topbar-font-size-written: 				3rem;
+$c-topbar-font-size-written-small: 			$c-topbar-font-size-written;
+$c-topbar-font-size-written-medium: 		$c-topbar-font-size-written;
+$c-topbar-font-size-written-large: 			$c-topbar-font-size-written;
+
+$c-topbar-font-size-fa: 					1.8rem;
+$c-topbar-font-size-fa-small: 				$c-topbar-font-size-fa;
+$c-topbar-font-size-fa-medium: 				$c-topbar-font-size-fa;
+$c-topbar-font-size-fa-large: 				$c-topbar-font-size-fa;
+
+$c-topbar-font-weight-p: 					$c-font-weight-light;
+$c-topbar-font-weight-p-small: 				$c-topbar-font-weight-p;
+$c-topbar-font-weight-p-medium: 			$c-topbar-font-weight-p;
+$c-topbar-font-weight-p-large: 				$c-topbar-font-weight-p;
+
+$c-topbar-font-lineheight-p: 				$c-topbar-height;
+$c-topbar-font-lineheight-p-small: 			$c-topbar-height-small;
+$c-topbar-font-lineheight-p-medium: 		$c-topbar-height;
+$c-topbar-font-lineheight-p-large: 			$c-topbar-height;
+
+$c-topbar-font-letterspacing-p: 			0rem;
+
+$c-topbar-font-weight-p-strong: 			$c-font-weight-bold;
+
+$c-topbar-font-size-icon: 					1.7rem;
+$c-topbar-font-size-icon-close: 			1.4rem;
+
+
+// Off Canvas
+// ----------
+$c-offcanvas-background-color: 				#f9f9f9;
+
+$c-offcanvas-font-size-a: 					3rem;
+$c-offcanvas-font-size-a-small: 			2.5rem;
+$c-offcanvas-font-size-a-medium: 			$c-offcanvas-font-size-a;
+$c-offcanvas-font-size-a-large: 			$c-offcanvas-font-size-a;
+
+$c-offcanvas-font-lineheight-a: 			$c-font-lineheight-h1;
+$c-offcanvas-font-lineheight-a-small: 		$c-font-lineheight-h1-small;
+$c-offcanvas-font-lineheight-a-medium: 		$c-font-lineheight-h1-medium;
+$c-offcanvas-font-lineheight-a-large: 		$c-font-lineheight-h1-large;
+
+$c-offcanvas-font-letterspacing-a: 			0rem;
+$c-offcanvas-font-weight-a: 				$c-font-weight-bold;
+
+$c-offcanvas-font-size-fa: 					1.4rem;
+$c-offcanvas-font-size-fa-small: 			$c-offcanvas-font-size-fa;
+$c-offcanvas-font-size-fa-medium: 			$c-offcanvas-font-size-fa;
+$c-offcanvas-font-size-fa-large: 			$c-offcanvas-font-size-fa;
+
+$c-offcanvas-font-size-p: 					1.5rem;
+$c-offcanvas-font-size-p-small: 			$c-offcanvas-font-size-p;
+$c-offcanvas-font-size-p-medium: 			$c-offcanvas-font-size-p;
+$c-offcanvas-font-size-p-large: 			$c-offcanvas-font-size-p;
+
+$c-offcanvas-font-lineheight-p: 			2.3rem;
+$c-offcanvas-font-letterspacing-p: 			.05rem;
+
+$c-offcanvas-font-size-p-strong: 			$c-offcanvas-font-size-p;
+$c-offcanvas-font-size-p-strong-small: 		$c-offcanvas-font-size-p-strong;
+$c-offcanvas-font-size-p-strong-medium: 	$c-offcanvas-font-size-p-strong;
+$c-offcanvas-font-size-p-strong-large: 		$c-offcanvas-font-size-p-strong;
+
+$c-offcanvas-font-lineheight-p-strong: 		2.5rem;
+
+
+// Overlay
+// -------
+$c-overlay-bg-opacity: 						.85;
+
+$c-overlay-font-size-h1: 					$c-font-size-h1;
+$c-overlay-font-size-h1-small: 				$c-font-size-h1-small;
+$c-overlay-font-size-h1-medium: 			$c-font-size-h1-medium;
+$c-overlay-font-size-h1-large: 				$c-font-size-h1-large;
+
+$c-overlay-font-weight-h1: 					$c-font-weight-h1;
+$c-overlay-font-weight-h1-small: 			$c-overlay-font-weight-h1;
+$c-overlay-font-weight-h1-medium: 			$c-overlay-font-weight-h1;
+$c-overlay-font-weight-h1-large: 			$c-overlay-font-weight-h1;
+
+$c-overlay-font-lineheight-h1: 				$c-font-lineheight-h1;
+$c-overlay-font-lineheight-h1-small: 		$c-font-lineheight-h1-small;
+$c-overlay-font-lineheight-h1-medium: 		$c-font-lineheight-h1-medium;
+$c-overlay-font-lineheight-h1-large: 		$c-font-lineheight-h1-large;
+
+$c-overlay-font-size-h2: 					$c-font-size-h2;
+$c-overlay-font-size-h2-small: 				$c-font-size-h2-small;
+$c-overlay-font-size-h2-medium: 			$c-font-size-h2-medium;
+$c-overlay-font-size-h2-large: 				$c-font-size-h2-large;
+
+$c-overlay-font-weight-h2: 					$c-font-weight-h2;
+$c-overlay-font-weight-h2-small: 			$c-overlay-font-weight-h2;
+$c-overlay-font-weight-h2-medium: 			$c-overlay-font-weight-h2;
+$c-overlay-font-weight-h2-large: 			$c-overlay-font-weight-h2;
+
+$c-overlay-font-lineheight-h2: 				$c-font-lineheight-h2;
+$c-overlay-font-lineheight-h2-small: 		$c-font-lineheight-h2-small;
+$c-overlay-font-lineheight-h2-medium: 		$c-font-lineheight-h2-medium;
+$c-overlay-font-lineheight-h2-large: 		$c-font-lineheight-h2-large;
+
+
+// Content panel
+// -------------
+$c-contentpanel-font-size-figcaption: 					1.2rem;
+$c-contentpanel-font-size-figcaption-small: 			1rem;
+$c-contentpanel-font-size-figcaption-medium: 			1.2rem;
+$c-contentpanel-font-size-figcaption-large: 			$c-contentpanel-font-size-figcaption;
+
+$c-contentpanel-font-weight-figcaption: 				$c-font-weight-bold;
+$c-contentpanel-font-weight-figcaption-small: 			$c-contentpanel-font-weight-figcaption;
+$c-contentpanel-font-weight-figcaption-medium: 			$c-contentpanel-font-weight-figcaption;
+$c-contentpanel-font-weight-figcaption-large: 			$c-contentpanel-font-weight-figcaption;
+
+$c-contentpanel-font-lineheight-figcaption: 			1.75rem;
+$c-contentpanel-font-lineheight-figcaption-small: 		$c-topbar-font-size-p-small * 1.1;
+$c-contentpanel-font-lineheight-figcaption-medium: 		1.5rem;
+$c-contentpanel-font-lineheight-figcaption-large: 		$c-contentpanel-font-lineheight-figcaption;
+
+$c-contentpanel-font-letterspacing-figcaption: 			0.05rem;
+
+
+$c-contentpanel-font-size-h2: 					1.75rem;
+$c-contentpanel-font-size-h2-small: 			$c-topbar-font-size-p-small;
+$c-contentpanel-font-size-h2-medium: 			1.5rem;
+$c-contentpanel-font-size-h2-large: 			$c-contentpanel-font-size-h2;
+
+$c-contentpanel-font-weight-h2: 				$c-font-weight-bold;
+$c-contentpanel-font-weight-h2-small: 			$c-contentpanel-font-weight-h2;
+$c-contentpanel-font-weight-h2-medium: 			$c-contentpanel-font-weight-h2;
+$c-contentpanel-font-weight-h2-large: 			$c-contentpanel-font-weight-h2;
+
+$c-contentpanel-font-lineheight-h2: 			1.75rem;
+$c-contentpanel-font-lineheight-h2-small: 		$c-topbar-font-size-p-small * 1.1;
+$c-contentpanel-font-lineheight-h2-medium: 		1.5rem;
+$c-contentpanel-font-lineheight-h2-large: 		$c-contentpanel-font-lineheight-h2;
+
+$c-contentpanel-font-letterspacing-h2: 			$c-font-letterspacing-h2;
+
+
+$c-contentpanel-font-size-h3: 					1.75rem;
+$c-contentpanel-font-size-h3-small: 			$c-topbar-font-size-p-small;
+$c-contentpanel-font-size-h3-medium: 			1.5rem;
+$c-contentpanel-font-size-h3-large: 			$c-contentpanel-font-size-h3;
+
+$c-contentpanel-font-weight-h3: 				$c-font-weight-h2;
+$c-contentpanel-font-weight-h3-small: 			$c-font-weight-h2-small;
+$c-contentpanel-font-weight-h3-medium: 			$c-font-weight-h2-medium;
+$c-contentpanel-font-weight-h3-large: 			$c-font-weight-h2-large;
+
+$c-contentpanel-font-lineheight-h3: 			1.75rem;
+$c-contentpanel-font-lineheight-h3-small: 		$c-topbar-font-size-p-small * 1.1;
+$c-contentpanel-font-lineheight-h3-medium: 		1.5rem;
+$c-contentpanel-font-lineheight-h3-large: 		$c-contentpanel-font-lineheight-h3;
+
+$c-contentpanel-font-letterspacing-h3: 			$c-font-letterspacing-h2;
+
+$c-contentpanel-font-size-h4: 					3rem;
+$c-contentpanel-font-size-h4-small: 			$c-topbar-font-size-p-small * 1.5;
+$c-contentpanel-font-size-h4-medium: 			2.5rem;
+$c-contentpanel-font-size-h4-large: 			$c-contentpanel-font-size-h4;
+
+$c-contentpanel-font-weight-h4: 				$c-font-weight-h1;
+$c-contentpanel-font-weight-h4-small: 			$c-font-weight-h1-small;
+$c-contentpanel-font-weight-h4-medium: 			$c-font-weight-h1-medium;
+$c-contentpanel-font-weight-h4-large: 			$c-font-weight-h1-large;
+
+$c-contentpanel-font-lineheight-h4: 			3.75rem;
+$c-contentpanel-font-lineheight-h4-small: 		$c-topbar-font-size-p-small * 2;
+$c-contentpanel-font-lineheight-h4-medium: 		3.25rem;
+$c-contentpanel-font-lineheight-h4-large: 		$c-contentpanel-font-lineheight-h4;
+
+$c-contentpanel-font-letterspacing-h4: 			$c-font-letterspacing-h1;
+
+$c-contentpanel-font-size-p: 					1.75rem;
+$c-contentpanel-font-size-p-small: 				$c-topbar-font-size-p-small;
+$c-contentpanel-font-size-p-medium: 			1.5rem;
+$c-contentpanel-font-size-p-large: 				$c-contentpanel-font-size-p;
+
+$c-contentpanel-font-weight-p: 					$c-font-weight-p;
+$c-contentpanel-font-weight-p-small: 			$c-font-weight-p-small;
+$c-contentpanel-font-weight-p-medium: 			$c-font-weight-p-medium;
+$c-contentpanel-font-weight-p-large: 			$c-font-weight-p-large;
+
+$c-contentpanel-font-lineheight-p: 				2.75rem;						   
+$c-contentpanel-font-lineheight-p-small: 		2.15rem;
+$c-contentpanel-font-lineheight-p-medium: 		2.15rem;
+$c-contentpanel-font-lineheight-p-large: 		$c-contentpanel-font-lineheight-p;
+
+$c-contentpanel-font-letterspacing-p: 			$c-font-letterspacing-p;
+
+
+$c-contentpanel-font-size-blockquote: 					1.75rem;
+$c-contentpanel-font-size-blockquote-small: 			1.5rem;
+$c-contentpanel-font-size-blockquote-medium: 			1.5rem;
+$c-contentpanel-font-size-blockquote-large: 			$c-contentpanel-font-size-blockquote;
+
+$c-contentpanel-font-weight-blockquote: 				$c-font-weight-regular;
+$c-contentpanel-font-weight-blockquote-small: 			$c-contentpanel-font-weight-blockquote;
+$c-contentpanel-font-weight-blockquote-medium: 			$c-contentpanel-font-weight-blockquote;
+$c-contentpanel-font-weight-blockquote-large: 			$c-contentpanel-font-weight-blockquote;
+
+$c-contentpanel-font-lineheight-blockquote: 			3rem;
+$c-contentpanel-font-lineheight-blockquote-small: 		2.5rem;
+$c-contentpanel-font-lineheight-blockquote-medium: 		2.5rem;
+$c-contentpanel-font-lineheight-blockquote-large: 		$c-contentpanel-font-lineheight-blockquote;
+
+$c-contentpanel-font-letterspacing-blockquote: 			$c-font-letterspacing-h2;
+
+
+$c-contentpanel-font-size-blockquote-quotes: 			8rem;
+$c-contentpanel-font-size-blockquote-quotes-small: 		$c-contentpanel-font-size-blockquote-quotes;
+$c-contentpanel-font-size-blockquote-quotes-medium: 	8rem;
+$c-contentpanel-font-size-blockquote-quotes-large: 		$c-contentpanel-font-size-blockquote-quotes;
+
+$c-contentpanel-font-size-blockquote-cite: 				1.5rem;
+$c-contentpanel-font-size-blockquote-cite-small: 		1.5rem;
+$c-contentpanel-font-size-blockquote-cite-medium: 		1.25rem;
+$c-contentpanel-font-size-blockquote-cite-large: 		$c-contentpanel-font-size-blockquote-cite;
+
+
+// Content slide
+// -------------
+$c-contentslide-font-size-p: 							3rem;
+$c-contentslide-font-size-p-small: 						$c-topbar-font-size-p-small;
+$c-contentslide-font-size-p-medium: 					2.5rem;
+$c-contentslide-font-size-p-large: 						$c-contentslide-font-size-p;
+											
+$c-contentslide-font-weight-p: 							$c-font-weight-light;
+$c-contentslide-font-weight-p-small: 					$c-contentslide-font-weight-p;
+$c-contentslide-font-weight-p-medium: 					$c-contentslide-font-weight-p;
+$c-contentslide-font-weight-p-large: 					$c-contentslide-font-weight-p;
+
+$c-contentslide-font-lineheight-p: 						4rem;
+$c-contentslide-font-lineheight-p-small: 				1.85rem;
+$c-contentslide-font-lineheight-p-medium: 				3rem;
+$c-contentslide-font-lineheight-p-large: 				$c-contentslide-font-lineheight-p;
+
+$c-contentslide-font-letterspacing-p: 					.0.5rem;
+
+
+$c-contentslide-font-size-h3: 							$c-font-size-h1;
+$c-contentslide-font-size-h3-small: 					2rem;
+$c-contentslide-font-size-h3-medium: 					$c-font-size-h1-medium;
+$c-contentslide-font-size-h3-large: 					$c-font-size-h1-large;
+											
+$c-contentslide-font-weight-h3: 						$c-font-weight-h1;
+$c-contentslide-font-weight-h3-small: 					$c-contentslide-font-weight-h3;
+$c-contentslide-font-weight-h3-medium: 					$c-contentslide-font-weight-h3;
+$c-contentslide-font-weight-h3-large: 					$c-contentslide-font-weight-h3;
+
+$c-contentslide-font-lineheight-h3: 					$c-font-lineheight-h1;
+$c-contentslide-font-lineheight-h3-small: 				2.25rem;
+$c-contentslide-font-lineheight-h3-medium: 				$c-font-lineheight-h1-medium;
+$c-contentslide-font-lineheight-h3-large: 				$c-font-lineheight-h1-large;
+
+$c-contentslide-font-letterspacing-h3: 					.0.5rem;
+
+
+// Footer
+// ------
+$c-footer-font-size-p: 								$c-font-size-p;
+$c-footer-font-size-p-small: 						$c-footer-font-size-p;
+$c-footer-font-size-p-medium: 						$c-footer-font-size-p;
+$c-footer-font-size-p-large: 						$c-footer-font-size-p;
+
+$c-footer-font-weight-p: 							$c-font-weight-light;
+$c-footer-font-weight-p-small: 						$c-font-weight-p;
+$c-footer-font-weight-p-medium: 					$c-font-weight-p;
+$c-footer-font-weight-p-large: 						$c-font-weight-p;
+											
+$c-footer-font-lineheight-p: 						1.95rem;
+$c-footer-font-lineheight-p-small: 					$c-footer-font-lineheight-p;
+$c-footer-font-lineheight-p-medium: 				$c-footer-font-lineheight-p;
+$c-footer-font-lineheight-p-large: 					$c-footer-font-lineheight-p;
+
+$c-footer-font-size-p-csmall: 						1.2rem;
+$c-footer-font-size-p-csmall-small: 				$c-footer-font-size-p-csmall;
+$c-footer-font-size-p-csmall-medium: 				$c-footer-font-size-p-csmall;
+$c-footer-font-size-p-csmall-large: 				$c-footer-font-size-p-csmall;
+
+$c-offcanvas-font-size-h3-strong: 					1.5rem;
+$c-offcanvas-font-size-h3-strong-small: 			$c-offcanvas-font-size-h3-strong;
+$c-offcanvas-font-size-h3-strong-medium: 			$c-offcanvas-font-size-h3-strong;
+$c-offcanvas-font-size-h3-strong-large: 			$c-offcanvas-font-size-h3-strong;

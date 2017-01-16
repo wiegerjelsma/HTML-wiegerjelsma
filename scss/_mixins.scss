@@ -1,0 +1,256 @@
+@mixin c-border-radius($type:all, $radius:$c-global-radius){
+	// top left, top right, bottom right, bottom left	
+	@if $type == all {
+		border-radius: $radius $radius $radius $radius;
+		-moz-border-radius: $radius $radius $radius $radius;
+		-webkit-border-radius: $radius $radius $radius $radius;
+	} @else if $type == top {
+		border-radius: $radius $radius 0px 0px;
+		-moz-border-radius: $radius $radius 0px 0px;
+		-webkit-border-radius: $radius $radius 0px 0px;	
+	} @else if $type == left {	
+		border-radius: $radius 0px 0px $radius;
+		-moz-border-radius: $radius 0px 0px $radius;
+		-webkit-border-radius: $radius 0px 0px $radius;	
+	} @else if $type == right {	
+		border-radius: 0px $radius $radius 0px;
+		-moz-border-radius: 0px $radius $radius 0px;
+		-webkit-border-radius: 0px $radius $radius 0px;				
+	} @else if $type == bottom {
+		border-radius:  0px 0px $radius $radius;
+		-moz-border-radius: 0px 0px $radius $radius;
+		-webkit-border-radius: 0px 0px $radius $radius;				
+	} @else if $type == 'left-top' {
+		border-radius: $radius 0px 0px 0px;
+		-moz-border-radius: $radius 0px 0px 0px;
+		-webkit-border-radius: $radius 0px 0px 0px;
+	} @else if $type == 'right-top' {
+		border-radius: 0px $radius 0px 0px;
+		-moz-border-radius: 0px $radius 0px 0px;
+		-webkit-border-radius: 0px $radius 0px 0px;
+	} @else if $type == 'left-bottom' {
+		border-radius: 0px 0px 0px $radius;
+		-moz-border-radius: 0px 0px 0px $radius;
+		-webkit-border-radius: 0px 0px 0px $radius;				
+	} @else if $type == 'right-bottom' {
+		border-radius:  0px 0px $radius 0px;
+		-moz-border-radius: 0px 0px $radius 0px;
+		-webkit-border-radius: 0px 0px $radius 0px;		
+	} @else if $type == none {
+		border-radius:  0px;
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
+	}
+}
+
+@mixin c-transition($type:all, $speed:.5s, $ease:ease-out){
+		-webkit-transition: 		unquote('-webkit-'+$type) $speed $ease;
+		-moz-transition:    		$type $speed $ease;
+		-o-transition:      		$type $speed $ease;						
+		transition:         		$type $speed $ease;
+	}
+
+@mixin c-transition-delay($time){
+		-webkit-transition-delay: 	$time;
+		-moz-transition-delay: 		$time;
+		-o-transition-delay: 		$time;
+		transition-delay: 			$time;
+	}	
+
+
+@mixin c-transform($transforms) {
+	-webkit-transform: $transforms;
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+            transform: $transforms;
+}
+
+// rotate
+@mixin c-rotate ($deg) {
+  @include c-transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin c-scale($scale) {
+	 @include c-transform(scale($scale));
+} 
+// translate
+@mixin c-translate ($x, $y) {
+   @include c-transform(translate($x, $y));
+}
+
+// translateY
+@mixin c-translateY ($y) {
+   @include c-transform(translateY($y));
+}
+
+// translateX
+@mixin c-translateX ($x) {
+   @include c-transform(translateX($x));
+}
+
+// skew
+@mixin c-skew ($x, $y) {
+   @include c-transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin c-transform-origin ($origin) {
+	-webkit-transform-origin: $origin;
+       -moz-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+            transform-origin: $origin;
+}
+
+
+	
+@mixin c-opacity($opacity){
+	filter: alpha(opacity=$opacity); /* internet explorer */
+	-khtml-opacity: $opacity/100;      /* khtml, old safari */
+	-moz-opacity: $opacity/100;       /* mozilla, netscape */
+	opacity: $opacity/100;           /* fx, safari, opera */
+}
+
+@mixin c-gradient-white-to-transparent(){
+    background: -webkit-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1)); /* Standard syntax (must be last) */
+	
+}
+
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
+  background: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down
+}
+
+// Vertical gradient, from top to bottom
+//
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+// Color stops are not available in IE9 and below.
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
+  background: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down  
+}
+
+@function remToPx($rem){
+	$unit: strip-unit($rem);
+	@return ($unit * 10) * 1px;
+}
+
+@function pxToRem($px){
+	$unit: strip-unit($px);
+	@return ($unit / 10) * 1rem;
+}
+
+@mixin alpha-background-color($color, $background) {
+  $percent: alpha($color) * 100%;
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  background-color: $solid-color;
+  background-color: $color;
+}
+
+
+/**
+ * Fix for vw, vh, vmin, vmax on iOS 7.
+ * http://caniuse.com/#feat=viewport-units
+ *
+ * This fix works by replacing viewport units with px values on known screen sizes.
+ *
+ * iPhone 6 and 6 Plus cannot run iOS 7, so are not targeted by this fix.
+ * Target devices running iOS 8+ will incidentally execute the media query,
+ * but this will still produce the expected result; so this is not a problem.
+ *
+ * As an example, replace:
+ *
+ *   height: 50vh;
+ *   font-size: 5vmin;
+ *
+ * with:
+ *
+ *   @include viewport-unit(height, 50vh);
+ *   @include viewport-unit(font-size, 5vmin);
+ */
+@mixin viewport-unit($property, $value) {
+  #{$property}: $value;
+
+  $unit: unit($value);
+
+  @if (index((vw, vh, vmin, vmax), $unit) != null) {
+    $devices: (
+      (768px, 1024px), // iPad (all versions)
+      (320px, 480px),  // iPhone 4
+      (320px, 568px)   // iPhone 5, 5C, 5S
+    );
+
+    @each $device in $devices {
+      $device-width: nth($device, 1);
+      $device-height: nth($device, 2);
+
+      $device-query: "only screen and (-webkit-min-device-pixel-ratio: 1)";
+      $device-query: "#{$device-query} and (device-width: #{$device-width})";
+      $device-query: "#{$device-query} and (device-height: #{$device-height})";
+
+      $percent: $value / ($value * 0 + 1); // see https://github.com/sass/sass/issues/533
+
+      $percent-width: $device-width * $percent / 100;
+      $percent-height: $device-height * $percent / 100;
+
+      @if ($unit == vmin or $unit == vmax) {
+        @media #{$device-query} {
+          #{$property}: if($unit == vmin, $percent-width, $percent-height);
+        }
+      }
+      @else {
+        @media #{$device-query} and (orientation: portrait) {
+          #{$property}: if($unit == vw, $percent-width, $percent-height);
+        }
+
+        @media #{$device-query} and (orientation: landscape) {
+          #{$property}: if($unit == vw, $percent-height, $percent-width);
+        }
+      }
+    }
+  }
+}
+
+
+// Loader
+// ------
+@mixin loader($width: 5rem, $height: 5rem, $margin: 0 auto 0 -2.5rem) {
+	margin: 						$margin;
+	font-size: 						10px;
+	position: 						absolute;
+	left: 							50%;
+	top: 							50%;
+	z-index: 						999;
+	text-indent: 					-9999em;
+	border-top: 					.2em solid rgba(255, 255, 255, 0.2);
+	border-right: 					.2em solid rgba(255, 255, 255, 0.2);
+	border-bottom: 					.2em solid rgba(255, 255, 255, 0.2);
+	border-left: 					.2em solid white;
+	-webkit-transform: 				translateZ(0);
+	-ms-transform: 					translateZ(0);
+	transform: 						translateZ(0);
+	-webkit-animation: 				load8 .65s infinite linear;
+	animation: 						load8 .65s infinite linear;
+
+	border-radius: 					50%;
+	width: 							$width;
+	height: 						$height;
+			
+	&:after
+	{
+		border-radius: 					50%;
+		width: 							$width;
+		height: 						$height;
+	}	
+}
