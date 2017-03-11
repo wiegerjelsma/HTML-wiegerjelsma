@@ -22,5 +22,5 @@ All CSS and Javascript files are compiled and minified to one file. Therefore we
 # Special notice
 
 I created the javascript function imgInterchange for performance and usability reasons.
-The imgInterchange function loads the @0x image first, then preloads the @1x or @2x image (depending on screen resolution) and replaces the €0x image.
-The €0x image is a blurry image, low in file size which appears very quick on the page. This technique gives the user a feel of a very fast website. Especially when large images on retina screens take a while to load.
+The imgInterchange function loads the @0x image first, then preloads the @1x or @2x image (depending on screen resolution) and replaces the @0x image.
+The @0x image is a blurry image, low in file size which appears very quick on the page. This technique gives the user a feel of a very fast website. Especially when large images on retina screens take a while to load.
